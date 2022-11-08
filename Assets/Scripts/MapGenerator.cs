@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MapGenerator : MonoBehaviour
 {
-    public enum DrawMode { NoiseMap, ColorMap};
+    public enum DrawMode { NoiseMap, ColorMap, MeshMap};
     public DrawMode drawMode;
 
     public int mapWidth; 
@@ -53,6 +53,10 @@ public class MapGenerator : MonoBehaviour
         {
             mapDisplay.DrawTexture(TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
 
+        }else if(drawMode == DrawMode.MeshMap)
+        {
+            mapDisplay.DrawMesh(MeshGenerator.GenerateTerrainMesh(noiseMap),
+                TextureGenerator.TextureFromColorMap(colorMap, mapWidth, mapHeight));
         }
     }
 
